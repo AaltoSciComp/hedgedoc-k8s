@@ -1,0 +1,31 @@
+---
+# database
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hedgedoc-db
+  namespace: hedgedoc
+  labels:
+    app: hedgedoc-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hedgedoc-db
+  template:
+    metadata:
+      labels:
+        app: hedgedoc-db
+    spec:
+      containers:
+      - name: hd-postgres
+        image: postgres:13.4-alpine
+        ports:
+        - containerPort: 5432
+        env:
+          - {name: POSTGRES_USER, value: "hedgedoc"}
+          - {name: POSTGRES_PASSWORD, value: "password"}
+          - {name: POSTGRES_DB, value: "hedgedoc"}
+        #volumeMounts:
+        #  - mountPath: /var/lib/postgresql/data
+        #    name: hd-db
