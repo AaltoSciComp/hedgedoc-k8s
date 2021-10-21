@@ -4,7 +4,13 @@ kind: Ingress
 metadata:
   name: hd-ingress
   namespace: hedgedoc
+  annotations:
+    cert-manager.io/issuer: "letsencrypt-prod"
 spec:
+  tls:
+    - hosts:
+        - hd-test.k8s-test.cs.aalto.fi
+      secretName: hedgedoc-tls
   rules:
     - host: hd-test.k8s-test.cs.aalto.fi
       http:
