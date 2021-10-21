@@ -24,8 +24,13 @@ spec:
         - containerPort: 5432
         env:
           - {name: POSTGRES_USER, value: "hedgedoc"}
-          - {name: POSTGRES_PASSWORD, value: "password"}
+          #- {name: POSTGRES_PASSWORD, value: "password"}
+          - {name: POSTGRES_PASSWORD, valueFrom: {secretKeyRef: {name: database-password, key: password }}}
           - {name: POSTGRES_DB, value: "hedgedoc"}
-        #volumeMounts:
-        #  - mountPath: /var/lib/postgresql/data
-        #    name: hd-db
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: hedgedoc-db
+      volumes:
+        - name: hedgedoc-db
+          persistentVolumeClaim:
+            claimName: hedgedoc-db

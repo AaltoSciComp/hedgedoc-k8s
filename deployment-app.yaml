@@ -26,11 +26,11 @@ spec:
           # values from https://docs.hedgedoc.org/configuration/
           - {name: NODE_ENV, value: "production"}
           - {name: CMD_DOMAIN, value: "hd-test.k8s-test.cs.aalto.fi"}
-          - {name: CMD_URL_ADDPORT, value: "false"}
-          - {name: CMD_DB_URL, value: "postgres://hedgedoc:password@hd-db-svc:5432/hedgedoc"}
-          - {name: CMD_DOMAIN, value: "localhost"}
-          - {name: CMD_URL_ADDPORT, value: "true"}
+          - {name: CMD_URL_ADDPORT, value: "false"}  # because we are proxied
           - {name: CMD_LOGLEVEL, value: "debug"}
+          # create with:      kubectl create -n hedgedoc secret generic database-password --from-literal=password=SECRET-VALUE-HERE
+          - {name: CMD_DB_URL, value: "postgres://hedgedoc@hd-db-svc:5432/hedgedoc"}
+          - {name: CMD_DB_PASSWORD, valueFrom: {secretKeyRef: {name: database-password, key: password }}}
           # Create with:     kubectl create -n hedgedoc secret generic session-secret --from-literal=secret=SECRET-VALUE-HERE
           - {name: CMD_SESSION_SECRET, valueFrom: {secretKeyRef: {name: session-secret, key: secret }}}
         #volumeMounts:
