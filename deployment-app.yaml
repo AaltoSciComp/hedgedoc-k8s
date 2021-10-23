@@ -25,9 +25,10 @@ spec:
         env:
           # values from https://docs.hedgedoc.org/configuration/
           - {name: NODE_ENV, value: "production"}
-          - {name: CMD_DOMAIN, value: "hd-test.k8s-test.cs.aalto.fi"}
-          - {name: CMD_URL_ADDPORT, value: "false"}  # because we are proxied
+          - {name: CMD_DOMAIN, value: "notes.coderefinery.org"}
           - {name: CMD_LOGLEVEL, value: "debug"}
+          - {name: CMD_URL_ADDPORT, value: "false"}  # because we are proxied
+          - {name: CMD_PROTOCOL_USESSL, value: "true"} # needed when proxied
           # create with:      kubectl create -n hedgedoc secret generic database-password --from-literal=password=SECRET-VALUE-HERE
           - {name: CMD_DB_URL, value: "postgres://hedgedoc@hd-db-svc:5432/hedgedoc"}
           - {name: CMD_DB_PASSWORD, valueFrom: {secretKeyRef: {name: database-password, key: password }}}

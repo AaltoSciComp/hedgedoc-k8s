@@ -9,9 +9,20 @@ metadata:
 spec:
   tls:
     - hosts:
+        - notes.coderefinery.org
         - hd-test.k8s-test.cs.aalto.fi
       secretName: hedgedoc-tls
   rules:
+    - host: notes.coderefinery.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hd-app-svc
+                port:
+                  number: 80
     - host: hd-test.k8s-test.cs.aalto.fi
       http:
         paths:
