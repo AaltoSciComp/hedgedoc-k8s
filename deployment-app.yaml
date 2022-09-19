@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: hd
-        image: quay.io/hedgedoc/hedgedoc:1.9.0
+        image: quay.io/hedgedoc/hedgedoc:1.9.4
         ports:
           - containerPort: 3000
         env:
