@@ -27,6 +27,7 @@ spec:
           - {name: NODE_ENV, value: "production"}
           - {name: CMD_DOMAIN, value: "notes.coderefinery.org"}
           - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"}
+          - {name: CMD_TOOBUSY_LAG, value: "210"} # default 70
           - {name: CMD_LOGLEVEL, value: "debug"}
           - {name: CMD_URL_ADDPORT, value: "false"}  # because we are proxied
           - {name: CMD_PROTOCOL_USESSL, value: "true"} # needed when proxied
