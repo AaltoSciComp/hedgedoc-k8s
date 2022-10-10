@@ -30,7 +30,10 @@ spec:
           - {name: CMD_LOGLEVEL, value: "debug"}
 
           # Access control
-          - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"}
+          - {name: CMD_ALLOW_ANONYMOUS, value: "false"} # No anonymous
+          - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"} # ... but anonymous edits to existing notes allowed
+          - {name: CMD_ALLOW_FREEURL, value: "true"}
+          - {name: CMD_REQUIRE_FREEURL_AUTHENTICATION, value: "true"}
 
           # Performance
           - {name: CMD_TOOBUSY_LAG, value: "210"} # default 70
