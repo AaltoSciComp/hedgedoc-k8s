@@ -24,18 +24,29 @@ spec:
           - containerPort: 3000
         env:
           # values from https://docs.hedgedoc.org/configuration/
+
+          # Basic settings
           - {name: NODE_ENV, value: "production"}
-          - {name: CMD_DOMAIN, value: "notes.coderefinery.org"}
-          - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"}
-          - {name: CMD_TOOBUSY_LAG, value: "210"} # default 70
           - {name: CMD_LOGLEVEL, value: "debug"}
+
+          # Access control
+          - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"}
+
+          # Performance
+          - {name: CMD_TOOBUSY_LAG, value: "210"} # default 70
+
+          # Connection and security settings
+          - {name: CMD_DOMAIN, value: "notes.coderefinery.org"}
           - {name: CMD_URL_ADDPORT, value: "false"}  # because we are proxied
           - {name: CMD_PROTOCOL_USESSL, value: "true"} # needed when proxied
-          # create with:      kubectl create -n hedgedoc secret generic database-password --from-literal=password=SECRET-VALUE-HERE
-          - {name: CMD_DB_URL, value: "postgres://hedgedoc@hd-db-svc:5432/hedgedoc"}
-          - {name: CMD_DB_PASSWORD, valueFrom: {secretKeyRef: {name: database-password, key: password }}}
           # Create with:     kubectl create -n hedgedoc secret generic session-secret --from-literal=secret=SECRET-VALUE-HERE
           - {name: CMD_SESSION_SECRET, valueFrom: {secretKeyRef: {name: session-secret, key: secret }}}
+
+          # Database settings
+          - {name: CMD_DB_URL, value: "postgres://hedgedoc@hd-db-svc:5432/hedgedoc"}
+          # create with:      kubectl create -n hedgedoc secret generic database-password --from-literal=password=SECRET-VALUE-HERE
+          - {name: CMD_DB_PASSWORD, valueFrom: {secretKeyRef: {name: database-password, key: password }}}
+
         #volumeMounts:
         #  - mountPath: /hedgedoc/public/uploads
         #    name: hd-uploads
