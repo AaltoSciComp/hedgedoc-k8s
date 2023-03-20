@@ -22,6 +22,10 @@ spec:
         image: quay.io/hedgedoc/hedgedoc:1.9.4
         ports:
           - containerPort: 3000
+        resources:
+          requests:
+            cpu: 2
+            memory: "1000Mi"
         env:
           # values from https://docs.hedgedoc.org/configuration/
 
