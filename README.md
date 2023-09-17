@@ -6,3 +6,10 @@ instead?
 
 This is based on the docker-compose setup, translated to kubernetes:
 https://docs.hedgedoc.org/setup/docker/
+
+## Usage
+
+Sign-up disabled.  To create users, use the command line:
+* kubectl [selector] exec -it bash
+* bin/manage_users --add name@email
+* bin/manage_users --reset name@email

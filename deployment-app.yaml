@@ -34,6 +34,7 @@ spec:
           - {name: CMD_LOGLEVEL, value: "debug"}
 
           # Access control
+          - {name: CMD_ALLOW_EMAIL_REGISTER, value: "false"}  # can't register self
           - {name: CMD_ALLOW_ANONYMOUS, value: "false"} # No anonymous
           - {name: CMD_ALLOW_ANONYMOUS_EDITS, value: "true"} # ... but anonymous edits to existing notes allowed
           - {name: CMD_ALLOW_FREEURL, value: "true"}
