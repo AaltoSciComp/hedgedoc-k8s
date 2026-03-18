@@ -41,7 +41,7 @@ spec:
           - {name: CMD_REQUIRE_FREEURL_AUTHENTICATION, value: "true"}
 
           # Performance
-          - {name: CMD_TOOBUSY_LAG, value: "210"} # default 70
+          - {name: CMD_TOOBUSY_LAG, value: "500"} # default 70
 
           # Connection and security settings
           - {name: CMD_DOMAIN, value: "notes.coderefinery.org"}
